@@ -13,6 +13,11 @@ class Play extends Phaser.Scene {
     }
 
     create() {
+		
+		
+this.timerText = this.add.text(20, 20, 'Time: 60', { font: '18px Arial', fill: '#FFFFFF' });
+
+
         // place tile sprite
         this.starfield = this.add.tileSprite(0, 0, 640, 480, 'starfield').setOrigin(0, 0);
 
@@ -80,6 +85,20 @@ class Play extends Phaser.Scene {
     }
 
     update() {
+		
+		
+		
+
+
+if (!this.gameOver) {
+    const elapsedTime = this.clock.getElapsed(); // Get elapsed time in milliseconds
+    const remainingTime = Math.ceil((game.settings.gameTimer - elapsedTime) / 1000);
+    this.timerText.setText('Time: ' + remainingTime);
+}
+
+
+
+
         // check key input for restart / menu
         if(this.gameOver && Phaser.Input.Keyboard.JustDown(keyR)) {
             this.scene.restart();
